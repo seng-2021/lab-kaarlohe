@@ -21,7 +21,10 @@ import mycrypt
     ("b", "O"),
     ("abc", "NOP"),
     ("abc123", 'NOP!"#'),
-    ("4", u'€')
+    ("4", u'€'),
+    ("%&ljs", "56YWF"),
+    ("(/ph)0", "87CU9="),
+    ("m"*999, "Z"*999)
 ])
 def test_encode(test_input, expected):
     '''Verify that strings given above match the expected results'''
@@ -47,7 +50,13 @@ def test_invalid_types(invalid_input):
     '''Invalid parameter types should raise TypeError'''
     with pytest.raises(TypeError):
         mycrypt.encode(invalid_input)
-
+        
+        
+def test_too_long_str():
+    '''Invalid characters should result in ValueError'''
+    with pytest.raises(ValueError):
+        mycrypt.encode("a"*1001)
+        
 
 def test_timing():
     '''Test whether encoding runs in approximately constant time, repetitions
