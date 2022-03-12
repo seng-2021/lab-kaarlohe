@@ -38,7 +38,8 @@ def test_encode_decode(test_input):
     assert(mycrypt.decode(mycrypt.encode(test_input))) == test_input
 
 
-@pytest.mark.parametrize("invalid_input", ['+','åäö',' ','ab.c'])
+@pytest.mark.parametrize("invalid_input", [
+    '+','åäö',' ','ab.c','*','£$€{}-^>>|@¤?',''])
 def test_invalid_char(invalid_input):
     '''Invalid characters should result in ValueError'''
     with pytest.raises(ValueError):
