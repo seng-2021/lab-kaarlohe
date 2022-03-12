@@ -29,7 +29,8 @@ def encode(s):
             crypted+=digitmapping[tempStr[i]]
         # Rot13 empty space for security against time attacks
         elif tempStr[i].isspace():
-            dump+=codecs.encode("a",'rot13')
+            delayChar = "a".upper()
+            dump+=codecs.encode(delayChar,'rot13')
         else:
             raise ValueError
             
